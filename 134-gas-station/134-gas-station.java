@@ -7,8 +7,8 @@ class Solution
         int total=0;
         for(int i=0;i<gas.length;i++){
             int diff=gas[i]-cost[i];
-            curr+=diff;
-            total+=diff;
+           curr=curr+diff;
+            total=total+diff;
             if(curr<0){
                 curr=0;
                 pos=i;
