@@ -2,15 +2,15 @@ class Solution
 {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2)
     {
-       String m="";
-        String n="";
+      String first="";
+        String second="";
         for(int i=0;i<word1.length;i++){
-           m=m.concat(word1[i]);
+            first=first.concat(word1[i]);
         }
-        for(int j=0;j<word2.length;j++){
-            n=n.concat(word2[j]);
+        for(int i=0;i<word2.length;i++){
+            second=second.concat(word2[i]);
         }
-        
-    return (m.equals(n));
+        return (first.equals(second));
     }
 }
+
