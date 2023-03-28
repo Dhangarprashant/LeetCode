@@ -27,7 +27,6 @@ class Solution
             result[0]=map.get(target-nums[i]);
             return result;
         }
-       
        }
          return result;
     }
