@@ -3,28 +3,15 @@ class Solution
     public int missingNumber(int[] nums) 
     {
         int n=nums.length;
-        int total=0;
-        for(int i=0;i<n+1;i++){
-            total+=i;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0; i<n; i++)
+        {
+                map.put(nums[i],1);
         }
-        int arraytotal=0;
-        for(int j=0;j<n;j++){
-            arraytotal+=nums[j];
+        for(int i=0; i<=n; i++)
+        {
+            if(map.get(i)==null) return i;
         }
-        return total-arraytotal;
+        return -1;
     }
 }
-
-// class Solution 
-// {
-//     public int missingNumber(int[] nums) 
-//     {
-//         int n=nums.length;
-//         int total=(n*(n+1))/2;
-//         int numtotal=0;
-//         for(int i=0;i<n;i++){
-//             numtotal+=nums[i];
-//         }
-//         return total-numtotal;
-//     }
-// }
