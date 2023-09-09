@@ -114,50 +114,52 @@ class Node
     }
 }
 */
-// class Solution
-// {
-//     // return the Kth largest element in the given BST rooted at 'root'
-//     public int kthLargest(Node root,int K)
-//     {
-//         //Your code here
-//         ArrayList<Integer> list=new ArrayList<>();
-//         inorder(root,list);
-//         Collections.sort(list);
-//         return list.get(K);
-//     }
-//     public static void inorder(Node root,ArrayList<Integer> list){
-//         if(root==null){
-//             return;
-//         }
-//         inorder(root.left);
-//         list.add(root.val);
-//         inorder(root.right);
-//     }
-// }
 
 
-
-class Solution {
-    public int kthLargest(Node root, int K) {
-        ArrayList<Integer> list = new ArrayList<>();
-        inorderReverse(root, list);
-        // Collections.sort(list);
-        if (K >= 1 && K <= list.size()) {
-            return list.get(list.size()-K);
-        }
-        
-        return -1;
+class Solution
+{
+    // return the Kth largest element in the given BST rooted at 'root'
+    public int kthLargest(Node root,int K)
+    {
+        //Your code here
+        ArrayList<Integer> list=new ArrayList<>();
+        inorder(root,list);
+        Collections.sort(list);
+        return list.get(list.size()-K);
     }
-    
-    public void inorderReverse(Node root, ArrayList<Integer> list) {
-        if (root == null) {
+    public static void inorder(Node root,ArrayList<Integer> list){
+        if(root==null){
             return;
         }
-        inorderReverse(root.left, list);
+        inorder(root.left,list);
         list.add(root.data);
-        inorderReverse(root.right, list);
+        inorder(root.right,list);
     }
 }
+
+
+
+// class Solution {
+//     public int kthLargest(Node root, int K) {
+//         ArrayList<Integer> list = new ArrayList<>();
+//         inorderReverse(root, list);
+//         // Collections.sort(list);
+//         if (K >= 1 && K <= list.size()) {
+//             return list.get(list.size()-K);
+//         }
+        
+//         return -1;
+//     }
+    
+//     public void inorderReverse(Node root, ArrayList<Integer> list) {
+//         if (root == null) {
+//             return;
+//         }
+//         inorderReverse(root.left, list);
+//         list.add(root.data);
+//         inorderReverse(root.right, list);
+//     }
+// }
 
 
 
