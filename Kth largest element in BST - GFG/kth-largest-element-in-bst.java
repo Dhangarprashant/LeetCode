@@ -141,7 +141,7 @@ class Solution {
     public int kthLargest(Node root, int K) {
         ArrayList<Integer> list = new ArrayList<>();
         inorderReverse(root, list);
-        Collections.sort(list);
+        // Collections.sort(list);
         if (K >= 1 && K <= list.size()) {
             return list.get(list.size()-K);
         }
