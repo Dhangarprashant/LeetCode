@@ -137,48 +137,50 @@ class Node
 
 
 
-// class Solution {
-//     public int kthLargest(Node root, int K) {
-//         ArrayList<Integer> list = new ArrayList<>();
-//         inorder(root, list);
-//         if (K >= 1 && K <= list.size()) {
-//             return list.get(list.size() - K);
-//         }
+class Solution {
+    public int kthLargest(Node root, int K) {
+        ArrayList<Integer> list = new ArrayList<>();
+        inorderReverse(root, list);
+        Collections.sort(list);
+        if (K >= 1 && K <= list.size()) {
+            return list.get(list.size()-K);
+        }
         
-//         return -1;
-//     }
-    
-//     public void inorder(Node root, ArrayList<Integer> list) {
-//         if (root == null) {
-//             return;
-//         }
-//         inorder(root.right, list);
-//         list.add(root.data);
-//         inorder(root.left, list);
-//     }
-// }
-
-
-class Solution
-{
-    // return the Kth largest element in the given BST rooted at 'root'
-    int count = 0;
-    int ans = 0;
-    public int kthLargest(Node root,int K)
-    {
-        //Your code here
-        revInorder(root,K);
-        return ans;
+        return -1;
     }
     
-    void revInorder(Node root, int k){
-        if(root==null) return;
-        revInorder(root.right,k);
-        count++;
-        if(count==k) {
-            ans = root.data;
+    public void inorderReverse(Node root, ArrayList<Integer> list) {
+        if (root == null) {
             return;
         }
-        revInorder(root.left,k);
+        inorderReverse(root.left, list);
+        list.add(root.data);
+        inorderReverse(root.right, list);
     }
 }
+
+
+
+// class Solution
+// {
+//     // return the Kth largest element in the given BST rooted at 'root'
+//     int count = 0;
+//     int ans = 0;
+//     public int kthLargest(Node root,int K)
+//     {
+//         //Your code here
+//         revInorder(root,K);
+//         return ans;
+//     }
+    
+//     void revInorder(Node root, int k){
+//         if(root==null) return;
+//         revInorder(root.right,k);
+//         count++;
+//         if(count==k) {
+//             ans = root.data;
+//             return;
+//         }
+//         revInorder(root.left,k);
+//     }
+// }
