@@ -6,8 +6,7 @@ class Solution {
         for(int i=1;i<nums.length;i++){
             if(nums[i]>greater){
                 greater=nums[i];
-            }
-            if(nums[i]<leftmax){
+            }else if(nums[i]<leftmax){
                 ans=i;
                 leftmax=greater;
             }
