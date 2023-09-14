@@ -1,27 +1,17 @@
 class Solution {
     public int partitionDisjoint(int[] nums) {
-        int n = nums.length;
-        int[] leftMax = new int[n];
-        int[] rightMin = new int[n];
-
-        leftMax[0] = nums[0];
-        for (int i = 1; i < n; i++) {
-            leftMax[i] = Math.max(leftMax[i - 1], nums[i]);
-        }
-
-        rightMin[n - 1] = nums[n - 1];
-        for (int i = n - 2; i >= 0; i--) {
-            rightMin[i] = Math.min(rightMin[i + 1], nums[i]);
-        }
-
-        for (int i = 0; i < n - 1; i++) {
-            if (leftMax[i] <= rightMin[i + 1]) {
-                return i + 1;
+        int leftmax=nums[0];
+        int greater=nums[0];
+        int ans=0;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]>greater){
+                greater=nums[i];
+            }
+            if(nums[i]<leftmax){
+                ans=i;
+                leftmax=greater;
             }
         }
-
-        return -1; // Return -1 if no valid partition is found.
+        return ans+1;
     }
 }
-
-
