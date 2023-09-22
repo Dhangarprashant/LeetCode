@@ -11,28 +11,46 @@ import java.util.*;
 //User function Template for Java
 
 
-class GFG
-{
-    ArrayList<Integer> find(int arr[], int n, int x)
-    {
-        // code here
-        ArrayList<Integer> list=new ArrayList<>();
-        int a1=-1;
-        int a2=-1;
-        for(int i=0;i<n;i++){
-            if(x==arr[i]){
-                a1=i;
-                break;
+import java.util.ArrayList;
+
+class GFG {
+    ArrayList<Integer> find(int arr[], int n, int x) {
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        // Binary search for the first occurrence
+        int left = 0;
+        int right = n - 1;
+        int firstOccurrence = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == x) {
+                firstOccurrence = mid;
+                right = mid - 1;
+            } else if (arr[mid] > x) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
             }
         }
-        for(int i=n-1;i>0;i--){
-            if(x==arr[i]){
-                a2=i;
-                break;
+        
+        // Binary search for the last occurrence
+        left = 0;
+        right = n - 1;
+        int lastOccurrence = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] == x) {
+                lastOccurrence = mid;
+                left = mid + 1;
+            } else if (arr[mid] > x) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
             }
         }
-        list.add(a1);
-        list.add(a2);
+
+        list.add(firstOccurrence);
+        list.add(lastOccurrence);
         return list;
     }
 }
