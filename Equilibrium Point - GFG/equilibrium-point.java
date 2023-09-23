@@ -83,33 +83,23 @@ class Main {
 
 class Solution {
     public static int equilibriumPoint(long A[], int n) {
-        long lefts = 0;
-        long rights = 0;
-        long left[] = new long[n];
-        long right[] = new long[n];
-
-        // Calculate the cumulative sum from the left
-        for (int i = 0; i < n; i++) {
-            lefts += A[i];
-            left[i] = lefts;
+        if(n==1){
+            return 1;
         }
-
-        // Calculate the cumulative sum from the right
-        for (int i = n - 1; i >= 0; i--) {
-            rights += A[i];
-            right[i] = rights;
+        long sum=0;
+        for(long x:A){
+            sum=sum+x;
         }
-
-        int ans = -1;
-        for (int j = 0; j < n; j++) {
-            // Check if the current element is an equilibrium point
-            if (left[j] == right[j]) {
-                ans = j + 1;
-                break;
+        long sum1=A[0];
+        sum=sum-A[0];
+        for(int i=1;i<n;i++){
+            sum=sum-A[i];
+            if(sum==sum1){
+                return i+1;
             }
+            sum1=sum1+A[i];
         }
-
-        return ans;
+        return -1;
     }
 }
 
