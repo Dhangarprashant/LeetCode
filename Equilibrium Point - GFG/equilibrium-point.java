@@ -86,18 +86,18 @@ class Solution {
         if(n==1){
             return 1;
         }
-        long sum=0;
-        for(long x:A){
-            sum=sum+x;
-        }
-        long sum1=A[0];
-        sum=sum-A[0];
-        for(int i=1;i<n;i++){
-            sum=sum-A[i];
-            if(sum==sum1){
+        long s1=A[0];
+        long s2=A[n-1];
+        int i=1;
+        int j=n-2;
+        while(i<=j){
+            if(s1==s2 && i==j){
                 return i+1;
+            }else if(s1<s2){
+                s1=s1+A[i++];
+            }else{
+                s2=s2+A[j--];
             }
-            sum1=sum1+A[i];
         }
         return -1;
     }
