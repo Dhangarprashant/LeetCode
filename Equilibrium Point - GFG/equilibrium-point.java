@@ -57,23 +57,59 @@ class Main {
 //     }
 // }
 
+// class Solution {
+//     public static int equilibriumPoint(long A[], int n) {
+//         int lefts=0;
+//         int rights=0;
+//         int left[]=new int[n];
+//         int right[]=new int[n];
+//         for(int i=0;i<n;i++){
+//             lefts=lefts+A[i];
+//             left[i]=lefts;
+//         }
+//         for(int i=n-1;i>=0;i--){
+//             rights=rights+A[i];
+//             right[i]=rights;
+//         }
+//         int ans=-1;
+//         for(int j=0;j<n;j++){
+//             if(left[j]==right[j]){
+//                 ans=j+1;
+//             }
+//         }
+//         return ans;
+//     }
+// }
+
 class Solution {
     public static int equilibriumPoint(long A[], int n) {
-        long totalSum = 0;
+        long lefts = 0;
+        long rights = 0;
+        long left[] = new long[n];
+        long right[] = new long[n];
+
+        // Calculate the cumulative sum from the left
         for (int i = 0; i < n; i++) {
-            totalSum += A[i];
+            lefts += A[i];
+            left[i] = lefts;
         }
 
-        long leftSum = 0;
-        for (int i = 0; i < n; i++) {
-            long rightSum = totalSum - leftSum - A[i];
-            if (leftSum == rightSum) {
-                return i + 1;
+        // Calculate the cumulative sum from the right
+        for (int i = n - 1; i >= 0; i--) {
+            rights += A[i];
+            right[i] = rights;
+        }
+
+        int ans = -1;
+        for (int j = 0; j < n; j++) {
+            // Check if the current element is an equilibrium point
+            if (left[j] == right[j]) {
+                ans = j + 1;
+                break;
             }
-
-            leftSum += A[i];
         }
-        return -1;
+
+        return ans;
     }
 }
 
