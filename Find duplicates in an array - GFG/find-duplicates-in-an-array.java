@@ -23,32 +23,31 @@ class GFG {
 
 
 
-class Solution {
+
+
+
+ class Solution {
     public static ArrayList<Integer> duplicates(int arr[], int n) {
         HashSet<Integer> set = new HashSet<>();
-        HashSet<Integer> duplicatesSet = new HashSet<>();
-        ArrayList<Integer> list = new ArrayList<>();
+        TreeSet<Integer> duplicatesSet = new TreeSet<>();
         
         for (int i = 0; i < n; i++) {
             if (!set.add(arr[i])) {
-                // This element is a duplicate
-                if (duplicatesSet.add(arr[i])) {
-                    // Add it to the list only once
-                    list.add(arr[i]);
-                }
+                duplicatesSet.add(arr[i]);
             }
         }
         
-        if (list.size() == 0) {
-            list.add(-1);
+        ArrayList<Integer> result = new ArrayList<>(duplicatesSet);
+        
+        if (result.isEmpty()) {
+            // If no duplicates were found, add -1 to the list.
+            result.add(-1);
         }
         
-        // Sort the list in ascending order
-        Collections.sort(list);
-        
-        return list;
+        return result;
     }
 }
+
 
 // import java.util.*;
 
