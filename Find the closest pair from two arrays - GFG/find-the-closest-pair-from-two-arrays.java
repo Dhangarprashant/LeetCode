@@ -57,8 +57,9 @@ class Solution{
         int diff=Integer.MAX_VALUE;
         while(i<n && j>=0){
             int sum=arr[i]+brr[j];
-            if(abs(sum,x)<diff){
-                diff=abs(sum,x);
+            int value=Math.abs(arr[i]+brr[j]-x);
+            if(value<diff){
+                diff=value;
                 list.add(0,arr[i]);
                 list.add(1,brr[j]);
             }
@@ -69,12 +70,5 @@ class Solution{
             }
         }
         return list;
-    }
-    public static int abs(int sum,int x){
-        if(sum>x){
-            return sum-x;
-        }else{
-            return x-sum;
-        }
     }
 }
