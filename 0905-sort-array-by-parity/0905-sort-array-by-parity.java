@@ -9,9 +9,6 @@ class Solution {
                 odd++;
             }
         }
-        // if(nums.length<=2){
-        //     return nums;
-        // }
         int ans[]=new int[nums.length];
         int oddp=even;
         int evenp=0;
