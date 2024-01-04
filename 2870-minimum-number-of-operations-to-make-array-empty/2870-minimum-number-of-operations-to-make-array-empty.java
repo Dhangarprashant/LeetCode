@@ -1,26 +1,28 @@
 
-import java.util.HashMap;
-
 class Solution {
     public int minOperations(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                map.put(nums[i],map.get(nums[i])+1);
+            }else{
+                map.put(nums[i],1);
+            }
         }
 
         int count = 0;
-        for (int num : map.keySet()) {
-            int occurrences = map.get(num);
-            if(occurrences==1){
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            int val=entry.getValue();
+            if(val==1){
                 return -1;
             }else{
-                if(occurrences%3==0){
-                    count=count+occurrences/3;
-                }else if(occurrences%3==1 ||occurrences%3==2){
-                    count=count+occurrences/3+1;
-                }else if(occurrences%2==0){
-                    count=count+occurrences/2;
+                if(val%3==0){
+                    count=count+val/3;
+                }else if(val%3==1 || val%3==2){
+                    count=count+val/3+1;
+                }else if(val%2==0){
+                    count=count+val/2;
                 }else{
                     return -1;
                 }
