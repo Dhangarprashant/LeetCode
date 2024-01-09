@@ -1,37 +1,23 @@
-import java.util.ArrayList;
-
 class Solution {
-    static int lengthOfLIS(int arr[]) {
-        // using binary search
-        int n = arr.length;
-        ArrayList<Integer> ans = new ArrayList<>();
-        ans.add(arr[0]);
-        int len = 1;
-        for (int i = 1; i < n; i++) {
-            if (arr[i] > ans.get(ans.size() - 1)) {
-                ans.add(arr[i]);
-                len++;
-            } else {
-                int indx = binarySearch(ans, arr[i]);
-                ans.set(indx, arr[i]);
+    public int lengthOfLIS(int[] nums) {
+        int omax=0;
+        int n=nums.length;
+        int[] dp=new int[n];
+        
+        for(int i=0;i<n;i++){
+            int max=0;
+            for(int j=0;j<i;j++){
+                if(nums[j]<nums[i]){
+                    if(dp[j]>max){
+                        max=dp[j];
+                    }
+                }
+            }
+            dp[i]=max+1;
+            if(dp[i]>omax){
+                omax=dp[i];
             }
         }
-        return len;
-    }
-
-    static int binarySearch(ArrayList<Integer> ans, int key) {
-        int low = 0;
-        int high = ans.size() - 1;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (ans.get(mid) == key) return mid;
-            else if (ans.get(mid) < key) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return low;
+        return omax;
     }
 }
-
