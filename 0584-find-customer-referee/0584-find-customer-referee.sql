@@ -3,4 +3,4 @@
 
 SELECT name 
 FROM Customer
-where referee_id <> 2 OR referee_id is null;
+where IFNULL(referee_id,-1)<> 2 ;
