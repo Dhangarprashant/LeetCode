@@ -1,17 +1,20 @@
 class Solution {
     public int longestPalindrome(String s) {
-        int[] count=new int[128];
-        for(char ch:s.toCharArray()){
-            count[ch]++;
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
         }
         int result=0;
-        for(int i=0;i<128;i++){
-            int val=count[i];
+        boolean oddfrequencyPresent=false;
+        for(Map.Entry<Character,Integer> entry:map.entrySet()){
+            int val=entry.getValue();
+            
             result=result+(val/2)*2;
-            if(result%2==0 && val%2==1){
-                result++;
+            
+            if(val%2!=0){
+                oddfrequencyPresent=true;
             }
         }
-        return result;
+        return oddfrequencyPresent==false?result:result+1;
     }
 }
