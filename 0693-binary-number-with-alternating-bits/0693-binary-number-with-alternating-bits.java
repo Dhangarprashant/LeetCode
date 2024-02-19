@@ -1,14 +1,9 @@
 class Solution {
     public boolean hasAlternatingBits(int n) {
-     
-        String ans = Integer.toBinaryString(n);
-        for(int i=1;i<ans.length();i++)
-        {
-            if(ans.charAt(i-1)==ans.charAt(i))
-            {
-                return false;
-            }
-        }
-        return true;
+       // Use XOR to check if adjacent bits are different
+        int xorResult = n ^ (n >> 1);
+
+        // Check if all bits in xorResult are set to 1
+        return (xorResult & (xorResult + 1)) == 0;
     }
 }
