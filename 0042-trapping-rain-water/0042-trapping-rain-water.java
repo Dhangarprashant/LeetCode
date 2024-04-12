@@ -1,35 +1,25 @@
+
 class Solution {
     public int trap(int[] height) {
-        int n=height.length;
-        
-        int left[]=new int[n];
-        int right[]=new int[n];
-        
-        left[0]=height[0];
-        right[n-1]=height[n-1];
-        
-        int valueL=height[0];
-        for(int i=1;i<n;i++){
-            if(height[i]>valueL){
-                valueL=height[i];
-                left[i]=valueL;
-            }else{
-                left[i]=valueL;
+        int totalWater = 0;
+        int n = height.length;
+
+        for (int i = 0; i < n; i++) {
+            int leftMax = 0;
+            int rightMax = 0;
+
+            for (int j = i; j >= 0; j--) {
+                leftMax = Math.max(leftMax, height[j]);
             }
-        }
-        int valueR=height[n-1];
-        for(int i=n-2;i>=0;i--){
-            if(height[i]>valueR){
-                valueR=height[i];
-                right[i]=valueR;
-            }else{
-                right[i]=valueR;
+
+            for (int j = i; j < n; j++) {
+                rightMax = Math.max(rightMax, height[j]);
             }
+
+            totalWater += Math.min(leftMax, rightMax) - height[i];
         }
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum=sum+Math.min(left[i],right[i])-height[i];
-        }
-        return sum;
+
+        return totalWater;
     }
+
 }
