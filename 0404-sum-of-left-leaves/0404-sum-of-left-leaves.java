@@ -17,21 +17,13 @@
 
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-        return sumOfLeftLeavesHelper(root, false);
-    }
+        if(root == null) return 0;
 
-    private int sumOfLeftLeavesHelper(TreeNode node, boolean isLeft) {
-        if (node == null) {
-            return 0;
+        else if(root.left != null && root.left.left == null & root.left.right == null) {
+            return root.left.val + sumOfLeftLeaves(root.right) ;
         }
-
-        if (isLeft && node.left == null && node.right == null) {
-            return node.val;
+        else {
+            return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
         }
-
-        int leftSum = sumOfLeftLeavesHelper(node.left, true);
-        int rightSum = sumOfLeftLeavesHelper(node.right, false);
-
-        return leftSum + rightSum;
     }
 }
