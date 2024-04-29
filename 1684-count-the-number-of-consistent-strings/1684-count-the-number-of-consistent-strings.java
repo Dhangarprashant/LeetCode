@@ -11,6 +11,7 @@ class Solution {
                 char ch=word.charAt(i);
                 if(allowed_arr[ch-'a']==false){
                     flag=false;
+                    break;
                 }
             }
             if(flag){
