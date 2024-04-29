@@ -1,18 +1,19 @@
-
 import java.util.*;
 
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size();
-        List<Integer> dp = new ArrayList<>(triangle.get(n - 1));
 
         for (int i = n - 2; i >= 0; i--) {
-            List<Integer> row = triangle.get(i);
-            for (int j = 0; j < row.size(); j++) {
-                int minSum = row.get(j) + Math.min(dp.get(j), dp.get(j + 1));
-                dp.set(j, minSum);
+            List<Integer> currentRow = triangle.get(i);
+            List<Integer> nextRow = triangle.get(i + 1);
+
+            for (int j = 0; j < currentRow.size(); j++) {
+                int minSum = currentRow.get(j) + Math.min(nextRow.get(j), nextRow.get(j + 1));
+                currentRow.set(j, minSum);
             }
         }
-        return dp.get(0);
+
+        return triangle.get(0).get(0);
     }
 }
