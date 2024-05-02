@@ -10,7 +10,7 @@ class Solution {
         while (left < right) {
             int sum = nums[left] + nums[right];
             if (sum == 0) {
-                maxK = Math.max(maxK, Math.abs(nums[left])); 
+                maxK = Math.max(maxK, nums[right]); 
                 left++;
                 right--;
             } else if (sum < 0) { 
