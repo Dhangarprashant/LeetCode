@@ -1,22 +1,17 @@
-import java.util.Arrays;
+import java.util.HashMap;
 
 class Solution {
     public int findMaxK(int[] nums) {
-        Arrays.sort(nums); 
-        int left = 0;
-        int right = nums.length - 1;
-        int maxK = -1;
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
 
-        while (left < right) {
-            int sum = nums[left] + nums[right];
-            if (sum == 0) {
-                maxK = Math.max(maxK, nums[right]); 
-                left++;
-                right--;
-            } else if (sum < 0) { 
-                left++;
-            } else { 
-                right--;
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        int maxK = -1;
+        for (int num : nums) {
+            if (num > 0 && frequencyMap.containsKey(-num)) { 
+                maxK = Math.max(maxK, num);
             }
         }
 
