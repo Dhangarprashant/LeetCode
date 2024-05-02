@@ -1,25 +1,25 @@
-import java.util.HashSet;
+import java.util.Arrays;
 
 class Solution {
     public int findMaxK(int[] nums) {
-        HashSet<Integer> positives = new HashSet<>();
-        HashSet<Integer> negatives = new HashSet<>();
+        Arrays.sort(nums); 
+        int left = 0;
+        int right = nums.length - 1;
+        int maxK = -1;
 
-        for (int num : nums) {
-            if (num > 0) {
-                positives.add(num);
-            } else {
-                negatives.add(num); 
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == 0) {
+                maxK = Math.max(maxK, Math.abs(nums[left])); 
+                left++;
+                right--;
+            } else if (sum < 0) { 
+                left++;
+            } else { 
+                right--;
             }
         }
 
-        int ans = -1;
-        for (int num : positives) {
-            if (negatives.contains(-num)) {
-                ans = Math.max(ans, num);
-            }
-        }
-
-        return ans;
+        return maxK;
     }
 }
