@@ -1,16 +1,17 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 class Solution {
     public int findMaxK(int[] nums) {
-        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        HashSet<Integer> numSet = new HashSet<>();
 
         for (int num : nums) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+            numSet.add(num);
         }
 
         int maxK = -1;
+
         for (int num : nums) {
-            if (num > 0 && frequencyMap.containsKey(-num)) { 
+            if (num > 0 && numSet.contains(-num)) {
                 maxK = Math.max(maxK, num);
             }
         }
