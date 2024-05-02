@@ -9,13 +9,13 @@ class Solution {
             if (num > 0) {
                 positives.add(num);
             } else {
-                negatives.add(-num); 
+                negatives.add(num); 
             }
         }
 
         int ans = -1;
         for (int num : positives) {
-            if (negatives.contains(num)) {
+            if (negatives.contains(-num)) {
                 ans = Math.max(ans, num);
             }
         }
