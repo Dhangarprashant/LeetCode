@@ -1,45 +1,18 @@
-// class Solution {
-//     public int[] countBits(int n) {
-//         int ans[]=new int[n+1];
-//         for(int i=0;i<=n;i++){
-//             int temp=i;
-//             int number=temp;
-//             String str="";
-//             while(number!=0){
-//                 str=str+number%2;
-//                 number=number/2;
-//             }
-//             int count=0;
-//             for(int j=0;j<str.length();j++){
-//                 if(str.charAt(j)=='1'){
-//                     count++;
-//                 }
-//             }
-//             ans[temp]=count;
-//         }
-//         return ans;
-//     }
-// }
-
 class Solution {
     public int[] countBits(int n) {
-        int[] result = new int[n + 1];
-        
-        for (int i = 0; i <= n; i++) {
-            result[i] = countSetBits(i);
+        int ans[]=new int[n+1];
+        for(int i=0;i<ans.length;i++){
+            ans[i]=countingBits(i);
         }
-        
-        return result;
+        return ans;
     }
-    
-    private int countSetBits(int num) {
-        int count = 0;
-        
-        while (num > 0) {
-            count += num & 1;
-            num = num >> 1;
+    public static int countingBits(int n){
+        String bits=Integer.toBinaryString(n);
+        int count=0;
+        while(n>0){
+            count+=n&1;
+            n>>=1;
         }
-        
         return count;
     }
 }
