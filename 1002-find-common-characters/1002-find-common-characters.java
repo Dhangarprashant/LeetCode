@@ -1,26 +1,4 @@
-// class Solution {
-//     public List<String> commonChars(String[] words) {
-//         List<Character> list=new ArrayList<>();
-//         HashMap<Character,Integer> map=new HashMap<>();
-//         String first=words[0];
-//         for(int i=0;i<first.length();i++){
-//             map.put(first.charAt(i),map.getOrDefault(first.charAt(i),0)+1);
-//         }
-//         for(int i=1;i<words.length;i++){
-//             String val=words[i];
-//             for(int j=0;j<val.length();j++){
-//                 if(map.containsKey(val.charAt(j))){
-//                     list.add(val.charAt(j));
-//                 }
-//             }
-//         }
-//         return list;
-//     }
-// }
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 class Solution {
     public List<String> commonChars(String[] words) {
