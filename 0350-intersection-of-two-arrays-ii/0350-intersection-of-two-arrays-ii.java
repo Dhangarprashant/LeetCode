@@ -1,22 +1,27 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-class Solution {
-    public int[] intersect(int[] nums1, int[] nums2) {
-        int[] count = new int[1001];  
-        List<Integer> intersectionList = new ArrayList<>(); 
+class Solution  {
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> counts = new HashMap<>();
         for (int num : nums1) {
-            count[num]++;
+            counts.put(num, counts.getOrDefault(num, 0) + 1);
         }
+        List<Integer> resultList = new ArrayList<>();
         for (int num : nums2) {
-            if (count[num] > 0) {
-                intersectionList.add(num);
-                count[num]--;
+            if (counts.containsKey(num) && counts.get(num) > 0) {
+                resultList.add(num);
+                counts.put(num, counts.get(num) - 1);
             }
         }
-        int[] intersectionArray = new int[intersectionList.size()];
-        for (int i = 0; i < intersectionList.size(); i++) {
-            intersectionArray[i] = intersectionList.get(i);
+        int[] result = new int[resultList.size()];
+        for (int i = 0; i < resultList.size(); i++) {
+            result[i] = resultList.get(i);
         }
-
-        return intersectionArray;
+        
+        return result;
     }
 }
+
