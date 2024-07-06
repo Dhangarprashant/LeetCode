@@ -1,18 +1,12 @@
 class Solution {
     public int passThePillow(int n, int time) {
-        int current_position = 1;
-        int direction = 1; 
+        int cycle_length = 2 * (n - 1);
+        int effective_time = time % cycle_length;
 
-        for (int i = 0; i < time; i++) {
-            current_position += direction;
-
-            if (current_position == n) {
-                direction = -1; 
-            } else if (current_position == 1) {
-                direction = 1; 
-            }
+        if (effective_time < n) {
+            return 1 + effective_time;
+        } else {
+            return 2 * n - 1 - effective_time;
         }
-
-        return current_position;
     }
 }
